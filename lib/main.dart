@@ -15,10 +15,12 @@ class MyApp extends StatelessWidget {
     return StreamProvider<UserLocation>(
       create: (context) => LocationService().locationStream,
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Uber Clone',
         theme: ThemeData(
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
+          fontFamily: 'Roboto',
         ),
         home: HomePage(),
       ),

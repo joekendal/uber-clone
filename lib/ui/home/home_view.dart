@@ -24,7 +24,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         automaticallyImplyLeading: false,
         leading: Padding(
-          padding: const EdgeInsets.all(2.0),
+          padding: const EdgeInsets.all(4.0),
           child: Builder(
             builder: (context) => Material(
               color: Colors.transparent,
@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   icon: Icon(Icons.dehaze),
                   color: Colors.black,
-                  iconSize: 30,
+                  iconSize: 28,
                   tooltip:
                       MaterialLocalizations.of(context).openAppDrawerTooltip,
                 ),
@@ -55,13 +55,83 @@ class _HomePageState extends State<HomePage> {
           padding: EdgeInsets.zero,
           children: <Widget>[
             DrawerHeader(
-              child: Text('Drawer header'),
+              decoration: BoxDecoration(
+                color: Colors.black,
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      CircleAvatar(
+                        minRadius: 25,
+                        backgroundColor: Colors.grey[200],
+                        child: Icon(
+                          Icons.person,
+                          color: Colors.grey,
+                          size: 35,
+                        ),
+                      ),
+                      SizedBox(width: 15),
+                      Text(
+                        'John Appleseed',
+                        style: TextStyle(color: Colors.white, fontSize: 17),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        'Do more with your account',
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ],
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        'Get food delivery',
+                        style: TextStyle(color: Colors.white),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
             ListTile(
-              title: Text('item 1'),
-              onTap: () {
-                Navigator.pop(context);
-              },
+              title: Text(
+                'Your trips',
+                style: TextStyle(fontSize: 17),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(
+                'Help',
+                style: TextStyle(fontSize: 17),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(
+                'Payment',
+                style: TextStyle(fontSize: 17),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(
+                'Get discounts',
+                style: TextStyle(fontSize: 17),
+              ),
+              onTap: () {},
+            ),
+            ListTile(
+              title: Text(
+                'Settings',
+                style: TextStyle(fontSize: 17),
+              ),
+              onTap: () {},
             ),
           ],
         ),
@@ -83,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                 ),
                 DraggableScrollableSheet(
                     initialChildSize: 0.379,
-                    minChildSize: 0.2,
+                    minChildSize: 0.15,
                     maxChildSize: 0.379,
                     builder: (context, scrollController) {
                       return NotificationListener<
@@ -135,7 +205,6 @@ class _HomePageState extends State<HomePage> {
                                                 'Where to?',
                                                 style: TextStyle(
                                                   fontSize: 22,
-                                                  fontWeight: FontWeight.w600,
                                                 ),
                                               ),
                                             ),
@@ -155,6 +224,7 @@ class _HomePageState extends State<HomePage> {
                                                 avatar: Icon(
                                                   Icons.watch_later,
                                                   color: Colors.black87,
+                                                  size: 21,
                                                 ),
                                                 backgroundColor: Colors.white,
                                                 label: RichText(
@@ -163,14 +233,15 @@ class _HomePageState extends State<HomePage> {
                                                       TextSpan(
                                                         text: 'Now',
                                                         style: TextStyle(
-                                                            fontWeight:
-                                                                FontWeight.w500,
-                                                            color:
-                                                                Colors.black),
+                                                          fontWeight:
+                                                              FontWeight.w400,
+                                                          color: Colors.black,
+                                                        ),
                                                       ),
                                                       WidgetSpan(
                                                         child: SizedBox(
-                                                            width: 2.5),
+                                                          width: 2.5,
+                                                        ),
                                                       ),
                                                       WidgetSpan(
                                                         alignment:
@@ -263,7 +334,7 @@ class RecommendedTrip extends StatelessWidget {
           children: <Widget>[
             Text(
               postcode,
-              style: TextStyle(fontWeight: FontWeight.w500),
+              style: TextStyle(fontWeight: FontWeight.w400),
             ),
             Text(
               addressLine1,
