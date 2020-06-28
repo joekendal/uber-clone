@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
@@ -11,8 +9,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  Completer<GoogleMapController> _controller = Completer();
-
   @override
   Widget build(BuildContext context) {
     var userLocation = Provider.of<UserLocation>(context);
@@ -20,18 +16,48 @@ class _HomePageState extends State<HomePage> {
     var cameraPosition = userLocation != null
         ? CameraPosition(
             target: LatLng(userLocation.latitude, userLocation.longitude),
-            zoom: 13,
+            zoom: 14,
           )
         : null;
     return Scaffold(
       body: cameraPosition != null
-          ? GoogleMap(
-              initialCameraPosition: cameraPosition,
-              onMapCreated: (GoogleMapController controller) {
-                _controller.complete(controller);
-              },
+          ? Stack(
+              alignment: Alignment.bottomCenter,
+              children: <Widget>[
+                GoogleMap(
+                  initialCameraPosition: cameraPosition,
+                  compassEnabled: false,
+                  myLocationEnabled: true,
+                  zoomControlsEnabled: false,
+                  buildingsEnabled: true,
+                  myLocationButtonEnabled: false,
+                  minMaxZoomPreference: MinMaxZoomPreference(12, 20),
+                  mapToolbarEnabled: false,
+                  rotateGesturesEnabled: false,
+                ),
+                DraggableScrollableSheet(
+                    initialChildSize: 0.425,
+                    minChildSize: 0.2,
+                    maxChildSize: 0.425,
+                    builder: (context, scrollController) {
+                      return NotificationListener<
+                          OverscrollIndicatorNotification>(
+                        onNotification: (overscroll) {
+                          overscroll.disallowGlow();
+                          return true;
+                        },
+                        child: SingleChildScrollView(
+                          controller: scrollController,
+                          child: Container(
+                            color: Colors.white,
+                            height: 400,
+                          ),
+                        ),
+                      );
+                    }),
+              ],
             )
-          : Text(""),
+          : Text(''),
     );
   }
 }
