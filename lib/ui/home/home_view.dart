@@ -190,37 +190,13 @@ class _HomePageState extends State<HomePage> {
                                     ],
                                   ),
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: ListTile(
-                                    leading: Icon(Icons.location_on),
-                                    title: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text('AB65 7UQ'),
-                                        Text('Design District'),
-                                      ],
-                                    ),
-                                    trailing: Icon(Icons.arrow_forward_ios),
-                                  ),
-                                ),
+                                RecommendedTrip(
+                                    postcode: 'AB65 7UQ',
+                                    addressLine1: 'Design District'),
                                 Divider(),
-                                Padding(
-                                  padding: const EdgeInsets.all(4.0),
-                                  child: ListTile(
-                                    leading: Icon(Icons.location_on),
-                                    title: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: <Widget>[
-                                        Text('AB65 7UQ'),
-                                        Text('Design District'),
-                                      ],
-                                    ),
-                                    trailing: Icon(Icons.arrow_forward_ios),
-                                  ),
-                                ),
+                                RecommendedTrip(
+                                    postcode: 'YF82 2LO',
+                                    addressLine1: 'Flutter Avenue'),
                               ],
                             ),
                           ),
@@ -244,6 +220,62 @@ class _HomePageState extends State<HomePage> {
         currentIndex: 0,
         selectedItemColor: Colors.black87,
         onTap: (_) {},
+      ),
+    );
+  }
+}
+
+class RecommendedTrip extends StatelessWidget {
+  final String postcode;
+  final String addressLine1;
+  const RecommendedTrip({
+    Key key,
+    String postcode,
+    String addressLine1,
+  })  : this.postcode = postcode,
+        this.addressLine1 = addressLine1,
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: ListTile(
+        leading: Material(
+          color: Colors.transparent,
+          child: Ink(
+            decoration: ShapeDecoration(
+              color: Colors.grey[200],
+              shape: CircleBorder(),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(
+                Icons.location_on,
+                size: 15,
+                color: Colors.black87,
+              ),
+            ),
+          ),
+        ),
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text(
+              postcode,
+              style: TextStyle(fontWeight: FontWeight.w500),
+            ),
+            Text(
+              addressLine1,
+              style: TextStyle(fontSize: 14, color: Colors.black54),
+            ),
+          ],
+        ),
+        trailing: Icon(
+          Icons.arrow_forward_ios,
+          size: 17,
+          color: Colors.grey[400],
+        ),
       ),
     );
   }
