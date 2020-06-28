@@ -20,6 +20,50 @@ class _HomePageState extends State<HomePage> {
           )
         : null;
     return Scaffold(
+      extendBodyBehindAppBar: true,
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        leading: Padding(
+          padding: const EdgeInsets.all(2.0),
+          child: Builder(
+            builder: (context) => Material(
+              color: Colors.transparent,
+              child: Ink(
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: CircleBorder(),
+                ),
+                child: IconButton(
+                  onPressed: () {
+                    Scaffold.of(context).openDrawer();
+                  },
+                  icon: Icon(Icons.dehaze),
+                  color: Colors.black,
+                  iconSize: 30,
+                  tooltip:
+                      MaterialLocalizations.of(context).openAppDrawerTooltip,
+                ),
+              ),
+            ),
+          ),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: <Widget>[
+            DrawerHeader(child: Text('Drawer header')),
+            ListTile(
+              title: Text('item 1'),
+              onTap: () {
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
       body: cameraPosition != null
           ? Stack(
               alignment: Alignment.bottomCenter,
